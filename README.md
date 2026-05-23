@@ -1,2 +1,0 @@
-# ComplementoFyQ
-Test Interactivos
