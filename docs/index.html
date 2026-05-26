@@ -3,12 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="refresh" content="0; url=../index.html" />
   <title>Test interactivo | Complementos de Física y Química</title>
-  <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:2rem;line-height:1.5}</style>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; line-height: 1.5; }
+    .error { color: #b91c1c; }
+  </style>
 </head>
 <body>
-  <p>Redirigiendo al test interactivo…</p>
-  <p><a href="../index.html">Abrir test</a></p>
+  <p>Cargando test interactivo…</p>
+  <script>
+    fetch('https://raw.githubusercontent.com/AlejandroAme/ComplementoFyQ/main/index.html', { cache: 'no-store' })
+      .then(function(response) {
+        if (!response.ok) throw new Error('No se pudo cargar el test desde GitHub.');
+        return response.text();
+      })
+      .then(function(html) {
+        document.open();
+        document.write(html);
+        document.close();
+      })
+      .catch(function(error) {
+        document.body.innerHTML = '<p class="error">Error cargando el test.</p><p>' + error.message + '</p><p><a href="https://github.com/AlejandroAme/ComplementoFyQ/blob/main/index.html">Ver archivo en GitHub</a></p>';
+      });
+  </script>
 </body>
 </html>
